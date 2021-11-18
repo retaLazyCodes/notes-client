@@ -1,22 +1,48 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 function App() {
+  const notes = useSelector(state => state)
+  const dispatch = useDispatch()
+
+  const handleAddNote = (e) => {
+    e.preventDefault()
+    const { target } = e
+    const content = target.note.value
+    target.note.value = ''
+    dispatch({
+      type: '@notes/created',
+      payload: {
+        content,
+        important: false,
+        id: 1
+      }
+    })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form onSubmit={handleAddNote}>
+          <input name="note" />
+          <button>add</button>
+        </form>
+        <ul>
+          {
+            notes.map(note => {
+              return <li key={note.id}>
+                {note.content}
+                <strong>
+                  {
+                    note.important
+                      ? ' important'
+                      : ' not important'
+                  }
+                </strong>
+              </li>
+            })
+          }
+        </ul>
       </header>
     </div>
   );
