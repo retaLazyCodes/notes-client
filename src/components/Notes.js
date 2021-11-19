@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Note from "./Note";
 
 function Notes() {
-    const notes = useSelector(state => state)
+    const notes = useSelector(state => state.notes)
 
     return (
         <ul>
