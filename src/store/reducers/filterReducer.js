@@ -1,3 +1,4 @@
-export function filterReducer(state = 'ALL', action) {
+
+export function filterReducer(state = [], action) {
     return state
 }

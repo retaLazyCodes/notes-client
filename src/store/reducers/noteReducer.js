@@ -1,6 +1,10 @@
 
 export function noteReducer(state = [], action) {
+    console.log('ACTION_NOTE', action)
     switch (action.type) {
+        case '@notes/init':
+            return action.payload
+
         case '@notes/created':
             return [...state, action.payload]
 
@@ -15,6 +19,20 @@ export function noteReducer(state = [], action) {
                 }
                 return note
             })
+
+        case '@filter/ALL':
+            return action.payload
+
+        case '@filter/IMPORTANT':
+            return action.payload.filter(note =>
+                note.important
+            )
+
+        case '@filter/NOT_IMPORTANT':
+            return action.payload.filter(note =>
+                !note.important
+            )
+
         default:
             return state
     }
@@ -39,5 +57,33 @@ export const toggleImportanceOf = (id) => {
         payload: {
             id
         }
+    }
+}
+
+export const initNotes = (notes) => {
+    return {
+        type: '@notes/init',
+        payload: notes
+    }
+}
+
+export const getAll = (notes) => {
+    return {
+        type: '@filter/ALL',
+        payload: notes
+    }
+}
+
+export const getImportant = (notes) => {
+    return {
+        type: '@filter/IMPORTANT',
+        payload: notes
+    }
+}
+
+export const getNotImportant = (notes) => {
+    return {
+        type: '@filter/NOT_IMPORTANT',
+        payload: notes
     }
 }
