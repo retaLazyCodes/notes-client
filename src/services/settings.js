@@ -1,0 +1,1 @@
+export const API_URL = 'https://reta-notes-api.herokuapp.com/api'
