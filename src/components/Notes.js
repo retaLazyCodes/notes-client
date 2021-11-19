@@ -5,7 +5,7 @@ function Notes() {
     const notes = useSelector(state => state.notes)
 
     return (
-        <ul>
+        <ul style={{ listStyle: 'none' }}>
             {
                 notes.map(note =>
                     <Note
