@@ -1,7 +1,27 @@
 import deepFreeze from "deep-freeze";
 import { noteReducer } from "./noteReducer";
 
+
 describe('noteReducer', () => {
+
+    test('returns new state with action @notes/created', () => {
+        const state = []
+        const action = {
+            type: '@notes/created',
+            payload: {
+                content: 'the app state is in redux store',
+                important: true,
+                id: 1
+            }
+        }
+
+        deepFreeze(state)
+        const newState = noteReducer(state, action)
+
+        expect(newState).toHaveLength(1)
+        expect(newState).toContainEqual(action.payload)
+    })
+
     test('returns new state after action with toggle importance', () => {
         const state = [
             {
