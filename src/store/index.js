@@ -9,7 +9,8 @@ const reducer = combineReducers({
 })
 
 export const store = createStore(
-    reducer, composeWithDevTools()
+    reducer,
+    composeWithDevTools()
 )
 
 

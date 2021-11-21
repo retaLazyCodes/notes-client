@@ -1,38 +1,24 @@
 import { useDispatch } from "react-redux"
-import { getAll, getImportant, getNotImportant } from "../store/reducers/noteReducer"
+import { filterChange } from "../store/reducers/filterReducer"
 import './VisibilityFilter.css'
 
-function VisibilityFilter({ allNotes }) {
+function VisibilityFilter() {
 
     const dispatch = useDispatch()
 
-    const filterSelected = (value) => {
-        if (value === 'ALL') {
-            dispatch(getAll(allNotes))
-        }
-
-        if (value === 'IMPORTANT') {
-            dispatch(getImportant(allNotes))
-        }
-
-        if (value === 'NOT_IMPORTANT') {
-            dispatch(getNotImportant(allNotes))
-        }
-    }
-
     return (
-        <div className="main">
-            <div className="list-item">
+        <div className="radio">
+            <div className="radio-item">
                 all
-                <input type='radio' name='filter' onChange={() => filterSelected('ALL')} />
+                <input type='radio' name='filter' onChange={() => dispatch(filterChange('ALL'))} />
             </div>
-            <div className="list-item">
+            <div className="radio-item">
                 important
-                <input type='radio' name='filter' onChange={() => filterSelected('IMPORTANT')} />
+                <input type='radio' name='filter' onChange={() => dispatch(filterChange('IMPORTANT'))} />
             </div>
-            <div className="list-item">
+            <div className="radio-item">
                 not important
-                <input type='radio' name='filter' onChange={() => filterSelected('NOT_IMPORTANT')} />
+                <input type='radio' name='filter' onChange={() => dispatch(filterChange('NOT_IMPORTANT'))} />
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
-.main {
+.radio {
   display: flex;
   justify-content: space-between;
 }
 
-.list-item {
+.radio-item {
     margin-right: 30px;
 }

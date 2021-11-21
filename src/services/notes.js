@@ -33,6 +33,8 @@ const update = (id, newObject) => {
     return request.then(response => response.data)
 }
 
-export default {
+const service = {
     getAll, create, update, setToken
 }
+
+export default service

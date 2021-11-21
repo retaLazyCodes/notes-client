@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './App.css';
 import NoteForm from './components/NoteForm';
@@ -9,12 +9,10 @@ import { initNotes } from './store/reducers/noteReducer';
 
 
 function App() {
-  const [allNotes, setAllNotes] = useState([])
   const dispatch = useDispatch()
 
   useEffect(() => {
     notesService.getAll().then(notes => {
-      setAllNotes(notes)
       dispatch(initNotes(notes))
     })
   }, [dispatch])
@@ -25,7 +23,7 @@ function App() {
       <header className="App-header">
         <h1>App de notas</h1>
         <NoteForm />
-        <VisibilityFilter allNotes={allNotes} />
+        <VisibilityFilter />
         <Notes />
       </header>
     </div>
